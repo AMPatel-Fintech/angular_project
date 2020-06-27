@@ -1,0 +1,75 @@
+<div style=" padding-left: 10px;clear: both;">
+    <form (ngSubmit)="savedata(form)" #form="ngForm">
+        <div mat-dialog-content>
+         <button type="button" (click)="closeBox(form)">
+           <span class="fas fa-window-close"></span> </button>
+        <h5>Country Name</h5>
+        <mat-form-field>
+          <mat-label>Select Country</mat-label>
+          <mat-select [(ngModel)]="SaveData.country" name="SaveData.country">
+              <mat-option *ngFor="let country of countries" [value]="country">
+                  {{country}}
+              </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <h5>Currency Name</h5>
+        <mat-form-field >
+          <mat-label>Enter Currency Name</mat-label>
+          <input matInput [(ngModel)]="SaveData.currency" name="currency" required >
+        </mat-form-field>
+
+        <h5>Alphabetic Code</h5>
+        <mat-form-field>
+          <mat-label>Enter Alphabetic Code</mat-label>
+          <input matInput #Acode="ngModel" minlength="3" maxlength="3" required value="INR" appAlpamatch
+          placeholder="IND" [(ngModel)]="SaveData.Acode" name="SaveData.Acode" [pattern]="AcodePattern">
+          <mat-error *ngIf="Acode.invalid && (Acode.dirty || Acode.touched)"
+              class="alert alert-danger">
+          <mat-error *ngIf="Acode.errors.required">
+            Alphabetic Code is required.
+          </mat-error>
+          <mat-error *ngIf="Acode.errors.minlength">
+            Alphabetic Code must be of 3 characters.
+          </mat-error>
+          <mat-error *ngIf="Acode.appAlpamatch">
+            Required Upper characters
+          </mat-error>
+          </mat-error>
+        </mat-form-field>
+
+        <h5>Numeric Code</h5>
+        <mat-form-field>
+          <mat-label>Enter Numeric Code</mat-label>
+          <input matInput placeholder="123" #Ncode="ngModel" minlength="2" required maxlength="4"
+          [(ngModel)]="SaveData.Ncode" name="SaveData.Ncode" id="Ncode" [pattern]="NcodePattern">
+
+          <mat-error *ngIf="Ncode.invalid && (Ncode.dirty || Ncode.touched)"
+              class="alert alert-danger">
+          <mat-error *ngIf="Ncode.errors.required">
+            Numeric Code is required.
+          </mat-error>
+          <mat-error *ngIf="Ncode.errors.minlength">
+            Numeric Code must be at least 2 characters & maximum 4 characters long.
+          </mat-error>
+          <mat-error *ngIf="Ncode.errors.pattern">
+            Required Numeric
+          </mat-error>
+          </mat-error>
+        </mat-form-field>
+
+        <h5>Status</h5>
+        <mat-radio-group aria-label="Select an option" [(ngModel)]="SaveData.status" name="SaveData.status">
+          <mat-radio-button value="Active"  >Active</mat-radio-button> &nbsp;
+          <mat-radio-button value="InActive" >InActive</mat-radio-button>
+        </mat-radio-group>
+        <br/> <br/>
+
+        <input type="hidden" name="id" [(ngModel)]="SaveData.id">
+        </div>
+        <div mat-dialog-actions>
+            <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Save</button>
+            
+        </div>
+    </form>
+  </div>

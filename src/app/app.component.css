@@ -1,0 +1,23 @@
+.formcontrol{
+    padding-left: 10px;
+    clear: both;
+}
+
+.adddetails{
+    float: right;
+    padding: 20px;
+    margin-right: 10px;
+}
+
+table{
+    width: 100%;
+}
+
+span:hover{
+    cursor: pointer;
+}
+
+.searchtext{
+    padding: 5px;
+}
+

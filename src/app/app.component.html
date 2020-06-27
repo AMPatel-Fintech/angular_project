@@ -1,0 +1,28 @@
+<div class="mat-elevation-z8">
+  <div class="adddetails">
+    <input type="text" [(ngModel)]="searchText" placeholder="Search text here" class="searchtext"> &nbsp;
+    <button mat-raised-button color="primary" (click)="openForm()">Add</button>    
+  </div>
+  <table class="table table-hover" id="myTable" style="width: 100%;">
+    <thead style="text-align: center;">
+        <th>Country</th>
+        <th>Currency Name</th>
+        <th>Alphabetic Code</th>
+        <th>Numeric Code</th>
+        <th>Status</th>
+        <th>Action</th>
+    </thead>
+   <tbody *ngFor="let item of displaydetail | filter: searchText | paginate: { itemsPerPage: 10, currentPage: p };
+    let i=index" style="text-align: center;">     
+     <td>{{item.country}}</td>
+     <td>{{item.currency}}</td>
+     <td>{{item.Acode}}</td>
+     <td>{{item.Ncode}}</td>
+     <td>{{item.status}}</td>
+     <td><span class="fas fa-pencil-alt" (click)="editItem(item.id)"></span> &nbsp; 
+      <span class="fas fa-trash" (click)="removeItem(item)"></span></td>
+   </tbody>
+  </table>
+  <pagination-controls (pageChange)="p = $event" class="pagination"></pagination-controls>
+</div>
+
